@@ -1,23 +1,23 @@
 {
     "cmake.configureOnOpen": true,
     "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#153f04",
-        "activityBar.background": "#153f04",
+        "activityBar.activeBackground": "#451300",
+        "activityBar.background": "#451300",
         "activityBar.foreground": "#e7e7e7",
         "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#2d66f2",
+        "activityBarBadge.background": "#008023",
         "activityBarBadge.foreground": "#e7e7e7",
         "commandCenter.border": "#e7e7e799",
-        "sash.hoverBorder": "#153f04",
-        "statusBar.background": "#050f01",
+        "sash.hoverBorder": "#451300",
+        "statusBar.background": "#120500",
         "statusBar.foreground": "#e7e7e7",
-        "statusBarItem.hoverBackground": "#153f04",
-        "statusBarItem.remoteBackground": "#050f01",
+        "statusBarItem.hoverBackground": "#451300",
+        "statusBarItem.remoteBackground": "#120500",
         "statusBarItem.remoteForeground": "#e7e7e7",
-        "titleBar.activeBackground": "#050f01",
+        "titleBar.activeBackground": "#120500",
         "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#050f0199",
+        "titleBar.inactiveBackground": "#12050099",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "050F01"
+    "peacock.color": "120500"
 }
