@@ -20,5 +20,9 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "120500",
-    "cmake.sourceDirectory": "D:/document/Learning/DMT 443/Plantplay/windows"
+    "cmake.sourceDirectory": "D:/document/Learning/DMT 443/Plantplay/windows",
+    "cSpell.words": [
+        "Dont't",
+        "Signup"
+    ]
 }
