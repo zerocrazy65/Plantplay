@@ -23,6 +23,9 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _controllerLastName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+
+  // TODO: ----- UI ----- //
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +79,8 @@ class _SignupPageState extends State<SignupPage> {
       )),
     );
   }
+
+  // TODO: ----- Widgets ----- //
 
   Widget _entryField(
     String title,
