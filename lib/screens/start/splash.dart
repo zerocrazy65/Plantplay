@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
 import 'package:flutter_application_1/theme/style.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,27 +43,27 @@ class _SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: ColorTheme.introPageColor),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("assets/logo/PlantPlay_Splash.png", width: 100),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Plant'.toUpperCase(),
-                    style: TextStyle(
+                    style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
                       color: ColorTheme.whiteColor,
                       fontSize: 38,
-                    ),
+                    )
                   ),
                   Text(
                     'Play'.toUpperCase(),
-                    style: TextStyle(
+                    style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
                       color: ColorTheme.highlightColor,
                       fontSize: 38,
