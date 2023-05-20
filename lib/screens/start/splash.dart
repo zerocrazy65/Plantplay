@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(Duration(seconds: 2), (){
+    Future.delayed(const Duration(seconds: 2), (){
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => const LoginPage(),
