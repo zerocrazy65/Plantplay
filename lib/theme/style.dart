@@ -19,16 +19,22 @@ class FontTheme {
     color: purpleColor,
     fontFamily: quicksand.fontFamily,
   );
+  static TextStyle buttonText = TextStyle(
+    fontSize: 14.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    fontFamily: quicksand.fontFamily,
+  );
   static TextStyle subBodyText = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.bold,
     color: greyColor,
     fontFamily: quicksand.fontFamily,
   );
-  static TextStyle buttonText = TextStyle(
-    fontSize: 14.0,
+  static TextStyle errorText = TextStyle(
+    fontSize: 10.0,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
+    color: Colors.red,
     fontFamily: quicksand.fontFamily,
   );
 }

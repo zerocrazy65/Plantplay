@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/authentication/signup.dart';
+import 'package:flutter_application_1/screens/shopping/store.dart';
 import 'package:flutter_application_1/theme/style.dart';
-import 'package:flutter_application_1/widgets/authen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -54,6 +54,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 6),
               _entryField('Your Password', _controllerPassword),
+              const SizedBox(height: 6),
+              _errorMessage(),
               const SizedBox(height: 20),
               _swapAuthenText(),
               const SizedBox(height: 40),
@@ -103,8 +105,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget _errorMessage() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(errorMessage == '' ? '' : 'error: $errorMessage',
-          style: const TextStyle(color: Colors.red)),
+      child: Text(errorMessage == '' ? '' : '$errorMessage',
+          style: FontTheme.errorText),
     );
   }
 
@@ -132,5 +134,40 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Widget submitButton(header) {
+    return ElevatedButton(
+        onPressed: () {
+          String? checkEmpty = checkInput();
+          if (checkEmpty.isEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const StorePage()),
+            );
+          } else {
+            setState(() {
+              errorMessage = checkEmpty;
+            });
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: ColorTheme.mainGreenColor, // Set the background colo
+        ),
+        child: Center(
+          child: Text(header, style: FontTheme.buttonText),
+        ));
+  }
+
+  String checkInput() {
+    String errorField = '';
+    if (_controllerEmail.text.isEmpty) {
+      return errorField = 'Please enter your E-mail';
+    }
+    if (_controllerPassword.text.isEmpty) {
+      return errorField = 'Please enter your Password';
+    }
+
+    return errorField;
   }
 }
