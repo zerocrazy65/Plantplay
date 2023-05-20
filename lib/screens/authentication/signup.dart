@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
-import 'package:flutter_application_1/widgets/authen.dart';
 
 import '../../theme/style.dart';
+import '../shopping/store.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -13,8 +13,8 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  String? errorMessage = '';
-  bool isRegis = true;
+  String? errorMessage = 'asd';
+  bool isPass = true;
   bool obscurePassword = true;
 
   String header = 'Signup';
@@ -71,6 +71,8 @@ class _SignupPageState extends State<SignupPage> {
               ),
               const SizedBox(height: 6),
               _entryField('Your Password', _controllerPassword),
+              const SizedBox(height: 6),
+              _errorMessage(),
               const SizedBox(height: 20),
               _swapAuthenText(),
               const SizedBox(height: 40),
@@ -128,8 +130,8 @@ class _SignupPageState extends State<SignupPage> {
   Widget _errorMessage() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Text(errorMessage == '' ? '' : 'error: $errorMessage',
-          style: const TextStyle(color: Colors.red)),
+      child: Text(errorMessage == '' ? '' : '$errorMessage',
+          style: FontTheme.errorText),
     );
   }
 
@@ -157,5 +159,46 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
+  }
+
+  Widget submitButton(header) {
+    return ElevatedButton(
+        onPressed: () {
+          String? checkEmpty = checkInput();
+          if (checkEmpty.isEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const StorePage()),
+            );
+          } else {
+            setState(() {
+              errorMessage = checkEmpty;
+            });
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: ColorTheme.mainGreenColor, // Set the background colo
+        ),
+        child: Center(
+          child: Text(header, style: FontTheme.buttonText),
+        ));
+  }
+
+  String checkInput() {
+    String errorField = '';
+    if (_controllerFirstName.text.isEmpty) {
+      return errorField = 'Please enter your First Name';
+    }
+    if (_controllerLastName.text.isEmpty) {
+      return errorField = 'Please enter your Last Name';
+    }
+    if (_controllerEmail.text.isEmpty) {
+      return errorField = 'Please enter your E-mail';
+    }
+    if (_controllerPassword.text.isEmpty) {
+      return errorField = 'Please enter your Password';
+    }
+
+    return errorField;
   }
 }
