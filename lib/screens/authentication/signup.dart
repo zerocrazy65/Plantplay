@@ -1,28 +1,28 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/authentication/signup.dart';
-import 'package:flutter_application_1/theme/style.dart';
+import 'package:flutter_application_1/screens/authentication/login.dart';
 import 'package:flutter_application_1/widgets/authen.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+import '../../theme/style.dart';
+
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   String? errorMessage = '';
-  bool isLogin = true;
+  bool isRegis = true;
   bool obscurePassword = true;
 
-  String header = 'Login';
+  String header = 'Signup';
 
+  final TextEditingController _controllerFirstName = TextEditingController();
+  final TextEditingController _controllerLastName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-
-  // ? ----- UI ----- //
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +41,20 @@ class _LoginPageState extends State<LoginPage> {
                 style: FontTheme.headerText,
               ),
               const SizedBox(height: 30),
+              Text(
+                'First Name',
+                style: FontTheme.bodyText,
+              ),
+              const SizedBox(height: 6),
+              _entryField('Your First Name', _controllerFirstName),
+              const SizedBox(height: 16),
+              Text(
+                'Last Name',
+                style: FontTheme.bodyText,
+              ),
+              const SizedBox(height: 6),
+              _entryField('Your Last Name', _controllerLastName),
+              const SizedBox(height: 16),
               Text(
                 'E-mail',
                 style: FontTheme.bodyText,
@@ -63,13 +77,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  // ? ----- Widgets ----- //
-
   Widget _entryField(
     String title,
     TextEditingController controller,
   ) {
     bool isPassword = title == 'Your Password';
+    bool isEmail = title == 'Your Email';
+    IconData? icon;
+
+    if (isPassword) {
+      icon = Icons.lock;
+    } else if (isEmail) {
+      icon = Icons.mail;
+    } else {
+      icon = null;
+    }
 
     return TextField(
       controller: controller,
@@ -80,9 +102,7 @@ class _LoginPageState extends State<LoginPage> {
         border: const OutlineInputBorder(),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        prefixIcon: Icon(
-          isPassword ? Icons.lock : Icons.mail,
-        ),
+        prefixIcon: icon != null ? Icon(icon) : null,
         suffixIcon: isPassword
             ? IconButton(
                 onPressed: () {
@@ -112,11 +132,11 @@ class _LoginPageState extends State<LoginPage> {
     return Center(
       child: RichText(
         text: TextSpan(
-          text: "Don't have an account? ",
+          text: "Already signed up? ",
           style: FontTheme.subBodyText,
           children: [
             TextSpan(
-              text: "Signup",
+              text: "Login",
               style: FontTheme.subBodyText.copyWith(
                 color: ColorTheme.highlightColor,
               ),
@@ -124,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 ..onTap = () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SignupPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
             ),
