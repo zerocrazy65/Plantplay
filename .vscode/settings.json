@@ -22,7 +22,10 @@
     "peacock.color": "120500",
     "cmake.sourceDirectory": "D:/document/Learning/DMT 443/Plantplay/windows",
     "cSpell.words": [
+        "checkpass",
         "Dont't",
+        "fname",
+        "lname",
         "Signin",
         "Signup"
     ]

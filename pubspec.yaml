@@ -54,7 +54,7 @@ dev_dependencies:
    flutter_lints: ^2.0.0
 
    flutter_native_splash: ^2.0.1+1
-   
+
 flutter_native_splash:
    color: "#447055"
    # image: assets/logo/PlantPlay_noText.png

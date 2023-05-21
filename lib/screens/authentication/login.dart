@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/authentication/signup.dart';
 import 'package:flutter_application_1/screens/shopping/store.dart';
 import 'package:flutter_application_1/theme/style.dart';
@@ -138,13 +139,22 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget submitButton(header) {
     return ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           String? checkEmpty = checkInput();
           if (checkEmpty.isEmpty) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const StorePage()),
-            );
+            String? checkpass =
+                await signinReq(_controllerEmail, _controllerPassword);
+            if (checkpass == "Authentication successful") {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => const StorePage(),
+                ),
+              );
+            } else {
+              setState(() {
+                errorMessage = checkpass;
+              });
+            }
           } else {
             setState(() {
               errorMessage = checkEmpty;

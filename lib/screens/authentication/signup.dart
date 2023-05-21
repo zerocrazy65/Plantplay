@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
 
 import '../../theme/style.dart';
@@ -13,7 +14,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  String? errorMessage = 'asd';
+  String? errorMessage = '';
   bool isPass = true;
   bool obscurePassword = true;
 
@@ -166,6 +167,12 @@ class _SignupPageState extends State<SignupPage> {
         onPressed: () {
           String? checkEmpty = checkInput();
           if (checkEmpty.isEmpty) {
+            signupReq(
+              _controllerFirstName,
+              _controllerLastName,
+              _controllerEmail,
+              _controllerPassword,
+            );
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const StorePage()),
