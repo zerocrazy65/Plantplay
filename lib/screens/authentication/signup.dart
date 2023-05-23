@@ -39,7 +39,7 @@ class _SignupPageState extends State<SignupPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 100),
+              const SizedBox(height: 50),
               Text(
                 header,
                 style: FontTheme.headerText,
@@ -150,8 +150,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.push(
-                    context,
+                  Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
@@ -173,8 +172,7 @@ class _SignupPageState extends State<SignupPage> {
               _controllerEmail,
               _controllerPassword,
             );
-            Navigator.push(
-              context,
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const StorePage()),
             );
           } else {
