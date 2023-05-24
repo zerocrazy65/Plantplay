@@ -34,19 +34,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Future? serverResponse;
-  Future<List<Item>> showData() async {
-    final response = await http.get(Uri.parse(_localhost() + "/showDB"));
-    var responseData = json.decode(response.body);
-    //Creating a list to store input data;
-    List<Item> items = [];
-    responseData.forEach((index, value) {
-      Item item = Item(
-          id: value["user_id"],
-          username: value["username"],
-          password: value["password"]);
-      items.add(item);
-    });
-    return items;
+  Future showData() async {
+    final res = await http.get(Uri.parse("${_localhost()}/store"));
+    print(res.body); // Add this line to print the response body
   }
 
   @override
@@ -84,9 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          Text(snapshot.data[index].id.toString()),
-                          Text(snapshot.data[index].username),
-                          Text(snapshot.data[index].password)
+                          Text(snapshot.data[index].p_id.toString()),
+                          Text(snapshot.data[index].p_name),
+                          Text(snapshot.data[index].p_type)
                         ],
                       );
                     }));
@@ -107,12 +97,20 @@ String _localhost() {
 
 class Item {
   final int? id;
-  final String? username;
-  final String? password;
+  final String? img;
+  final String? type;
+  final String? name;
+  final int? price;
+  final String? describe;
+  final int? rating;
 
   Item({
     this.id,
-    this.username,
-    this.password,
+    this.img,
+    this.type,
+    this.name,
+    this.price,
+    this.describe,
+    this.rating,
   });
 }
