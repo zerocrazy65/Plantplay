@@ -81,6 +81,31 @@ flutter:
       - assets/img/
       - assets/logo/
       - assets/img/plant_bg.jpg
+      - assets/logo/Logo-PLANTPLAY.png
+      - assets/icons/_flower.png
+      - assets/icons/_green.png
+      - assets/icons/_indoor.png
+      - assets/store/Bonsai.png
+      - assets/store/Buxus sempervirens.png
+      - assets/store/Buxus.png
+      - assets/store/Crassula ovata.png
+      - assets/store/Dracaena fragrans.png
+      - assets/store/Epipremnum aureum.png
+      - assets/store/Mint.png
+      - assets/store/Monstera Adansonii.png
+      - assets/store/Orchid.png
+      - assets/store/Pelargonium zonale.png
+      - assets/store/Phalaenopsis.png
+      - assets/store/Pink rose.png
+      - assets/store/Plum blossom.png
+      - assets/store/Regal pelargonium.png
+      - assets/store/Rubber fig.png
+      - assets/store/Snake plant.png
+      - assets/store/Spathiphyllum kochii.png
+      - assets/store/Strelitzia nicolai.png
+      - assets/store/Tulip.png
+      - assets/store/White rose.png
+      - assets/store/Zamioculcas.png
       # - assets/img/xxx.xxx
 
    # An image asset can refer to one or more resolution-specific "variants", see

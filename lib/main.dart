@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/shopping/store.dart';
 import 'package:flutter_application_1/screens/start/splash.dart';
 
 void main() async {
@@ -14,7 +15,8 @@ class MyApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: StorePage(),
+      // home: Splas.hScreen(),
     );
   }
 }
