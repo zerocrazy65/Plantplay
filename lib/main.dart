@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/screens/shopping/navbar.dart';
 
-import 'package:flutter_application_1/screens/shopping/store.dart';
-
-import 'package:flutter_application_1/screens/start/splash.dart';
-
 void main() async {
   // Initialize Firebase App
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +16,6 @@ class MyApplication extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: NavBar(),
-
     );
   }
 }
