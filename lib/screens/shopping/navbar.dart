@@ -69,6 +69,16 @@ class NavBar extends StatelessWidget {
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              offset: const Offset(
+                0,
+                -5,
+              ),
+              blurRadius: 10.0,
+              spreadRadius: 2.0)
+        ],
         borderRadius: BorderRadius.circular(28.0),
         colorBehindNavBar: Colors.white,
       ),

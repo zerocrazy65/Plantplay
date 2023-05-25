@@ -63,8 +63,17 @@ class StorePageState extends State<StorePage> {
             future: storeData,
             builder: (BuildContext ctx, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
-                return const Center(
-                  child: Text("No data"),
+                return Column(
+                  children: [
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    Center(
+                        child: Text(
+                      "No data",
+                      style: FontTheme.bodyText,
+                    )),
+                  ],
                 );
               } else {
                 return Expanded(
