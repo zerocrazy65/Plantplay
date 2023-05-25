@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/middleware/connect.dart';
+import 'package:flutter_application_1/screens/shopping/productPage.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:flutter_application_1/widgets/slider.dart';
 
@@ -20,7 +21,6 @@ class StorePageState extends State<StorePage> {
 
   @override
   Widget build(BuildContext context) {
-    storeData = storeReq();
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Column(
@@ -37,7 +37,7 @@ class StorePageState extends State<StorePage> {
             ),
           ),
           const SizedBox(
-            height: 280,
+            height: 250,
             width: double.infinity,
             child: SliderWidget(),
           ),
@@ -50,15 +50,12 @@ class StorePageState extends State<StorePage> {
             children: [
               Image.asset(
                 'assets/icons/_indoor.png',
-                fit: BoxFit.scaleDown,
               ),
               Image.asset(
                 'assets/icons/_flower.png',
-                fit: BoxFit.scaleDown,
               ),
               Image.asset(
                 'assets/icons/_green.png',
-                fit: BoxFit.scaleDown,
               ),
             ],
           ),
@@ -72,71 +69,80 @@ class StorePageState extends State<StorePage> {
               } else {
                 return Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(11.0),
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 8.0,
-                        mainAxisSpacing: 8.0,
-                        mainAxisExtent: 210
-                      ),
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 8.0,
+                              mainAxisSpacing: 8.0,
+                              mainAxisExtent: 210),
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Card(
-                            child: Column(
-                              children: [
-                                Container(
-                                  color: ColorTheme.bgCartColor,
-                                  width: 250,
-                                  child: Image.asset(
-                                    snapshot.data[index].img,
-                                    width: 152,
-                                    height: 152,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.zero,
-                                  height: 50,
-                                  color: ColorTheme.mainGreenColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          snapshot.data[index].name,
-                                          style: FontTheme.buttonText,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1, // Limit text to one line
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              '\$${snapshot.data[index].price}',
-                                              style: FontTheme.buttonText,
-                                              overflow: TextOverflow
-                                                  .ellipsis, // Show ellipsis when text overflows
-                                              maxLines:
-                                                  1, // Limit text to one line
-                                            ),
-                                            const Icon(
-                                              Icons.keyboard_arrow_right,
-                                              color: ColorTheme.whiteColor,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                        return GestureDetector(
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductPage(
+                                        index: snapshot.data[index].id)))
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Card(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    color: ColorTheme.bgCartColor,
+                                    width: 250,
+                                    child: Image.asset(
+                                      snapshot.data[index].img,
+                                      width: 152,
+                                      height: 152,
+                                      fit: BoxFit.contain,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Container(
+                                    padding: EdgeInsets.zero,
+                                    height: 50,
+                                    color: ColorTheme.mainGreenColor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            snapshot.data[index].name,
+                                            style: FontTheme.buttonText,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines:
+                                                1, // Limit text to one line
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                '\$${snapshot.data[index].price}',
+                                                style: FontTheme.buttonText,
+                                                overflow: TextOverflow
+                                                    .ellipsis, // Show ellipsis when text overflows
+                                                maxLines:
+                                                    1, // Limit text to one line
+                                              ),
+                                              const Icon(
+                                                Icons.keyboard_arrow_right,
+                                                color: ColorTheme.whiteColor,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );

@@ -52,8 +52,6 @@ Future<List<Item>> storeReq() async {
         type: value["p_type"],
         name: value["p_name"], // Fix the value for the name field
         price: value["p_price"], // Fix the value for the price field
-        describe: value["describe"],
-        rating: value["p_rating"],
       );
       items.add(item);
     });
@@ -71,11 +69,54 @@ class Item {
   final String? type;
   final String? name;
   final int? price;
-  final String? describe;
-  final int? rating;
 
   Item({
     this.id,
+    this.img,
+    this.type,
+    this.name,
+    this.price,
+  });
+}
+
+Future<List<ProductConstructor>> productReq(id) async {
+  final res = await http.get(Uri.parse("${_localhost()}/store/$id"));
+  var resData = json.decode(res.body) as List<dynamic>;
+
+  List<ProductConstructor> products = resData.map((productData) {
+    return ProductConstructor(
+      id: productData['p_id'],
+      img: productData['p_img'],
+      name: productData['p_name'],
+      price: productData['p_price'],
+      describe: productData['p_describe'],
+      rating: productData['p_rating'],
+      light: productData['pd_light'],
+      temp: productData['pd_temp'],
+      water: productData['pd_water'],
+    );
+  }).toList();
+
+  return products;
+}
+
+class ProductConstructor {
+  final int? id;
+  final int? light;
+  final int? temp;
+  final int? water;
+  final String? img;
+  final String? type;
+  final String? name;
+  final int? price;
+  final String? describe;
+  final int? rating;
+
+  ProductConstructor({
+    this.id,
+    this.light,
+    this.temp,
+    this.water,
     this.img,
     this.type,
     this.name,
