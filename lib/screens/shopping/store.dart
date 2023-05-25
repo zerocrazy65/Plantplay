@@ -79,6 +79,7 @@ class StorePageState extends State<StorePage> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 8.0,
                         mainAxisSpacing: 8.0,
+                        mainAxisExtent: 210
                       ),
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
@@ -92,8 +93,8 @@ class StorePageState extends State<StorePage> {
                                   width: 250,
                                   child: Image.asset(
                                     snapshot.data[index].img,
-                                    width: 116,
-                                    height: 116,
+                                    width: 152,
+                                    height: 152,
                                     fit: BoxFit.contain,
                                   ),
                                 ),
