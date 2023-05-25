@@ -82,6 +82,8 @@ class Item {
 Future<List<ProductConstructor>> productReq(id) async {
   final res = await http.get(Uri.parse("${_localhost()}/store/$id"));
   var resData = json.decode(res.body) as List<dynamic>;
+  
+  print(resData);
 
   List<ProductConstructor> products = resData.map((productData) {
     return ProductConstructor(
@@ -90,6 +92,7 @@ Future<List<ProductConstructor>> productReq(id) async {
       name: productData['p_name'],
       price: productData['p_price'],
       describe: productData['p_describe'],
+      type: productData['p_type'],
       rating: productData['p_rating'],
       light: productData['pd_light'],
       temp: productData['pd_temp'],
