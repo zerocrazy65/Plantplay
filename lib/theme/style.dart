@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FontTheme {
-  static const Color greyColor = Color.fromARGB(255, 152, 155, 158);
   static final TextStyle quicksand = GoogleFonts.quicksand();
   static final TextStyle manjari = GoogleFonts.manjari();
 
@@ -27,7 +26,7 @@ class FontTheme {
   static TextStyle subBodyText = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.bold,
-    color: greyColor,
+    color: ColorTheme.greyColor,
     fontFamily: quicksand.fontFamily,
   );
   static TextStyle errorText = TextStyle(
@@ -39,6 +38,7 @@ class FontTheme {
 }
 
 class ColorTheme {
+  static const Color greyColor = Color.fromARGB(255, 152, 155, 158);
   static const Color whiteColor = Color(0xfff0f0f0);
   static const Color bgCartColor = Color(0xFFECECEC);
   static const Color mainGreenColor = Color(0xFF47734D);

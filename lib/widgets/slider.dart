@@ -35,7 +35,7 @@ class SliderWidgetState extends State<SliderWidget> {
                   return buildImage(image, index);
                 },
                 options: CarouselOptions(
-                    height: 220,
+                    height: 215,
                     viewportFraction: 1,
                     autoPlay: true,
                     enlargeCenterPage: true,
