@@ -23,6 +23,13 @@ class FontTheme {
     color: Colors.white,
     fontFamily: quicksand.fontFamily,
   );
+  static TextStyle detailText = TextStyle(
+    fontSize: 12.0,
+    letterSpacing: 0.5,
+    fontWeight: FontWeight.bold,
+    color: ColorTheme.greyColor,
+    fontFamily: quicksand.fontFamily,
+  );
   static TextStyle subBodyText = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.bold,
