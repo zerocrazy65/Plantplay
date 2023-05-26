@@ -17,6 +17,7 @@ class StorePageState extends State<StorePage> {
   Future? storeData;
   int activeButtonIndex = 0;
   String? modeSelected = 'Indoor';
+
   @override
   void initState() {
     super.initState();

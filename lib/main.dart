@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_application_1/screens/shopping/navbar.dart';
+import 'package:flutter_application_1/widgets/navbar.dart';
 
 void main() async {
   // Initialize Firebase App

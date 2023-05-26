@@ -176,7 +176,6 @@ class _LoginPageState extends State<LoginPage> {
     if (_controllerPassword.text.isEmpty) {
       return errorField = 'Please enter your Password';
     }
-
     return errorField;
   }
 }
