@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/shopping/productPage.dart';
 import 'package:flutter_application_1/theme/style.dart';
-import 'package:flutter_application_1/widgets/slider.dart';
-
-import '../../widgets/typeBtn.dart';
+import 'package:flutter_application_1/widgets/storeWidgets.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});

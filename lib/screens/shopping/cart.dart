@@ -11,6 +11,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  List<String> cartStore = [];
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -64,29 +65,35 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             Container(
-              child: const Column(
+              child: Column(
                 children: [
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
-                  Text('Item'),
+                  if (cartStore.isEmpty)
+                    Column(
+                      children: [
+                        Image.asset('assets/img/cartEmpty.png'),
+                        Text(
+                          'Your cart is empty',
+                          style: FontTheme.bodyText,
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.01,
+                        ),
+                        Text(
+                          'Looks like you have not added anything to card.',
+                          style: FontTheme.subBodyText,
+                        ),
+                        Text(
+                          'Go ahead & explore products.',
+                          style: FontTheme.subBodyText,
+                        ),
+                      ],
+                    )
+                  else
+                    Column(
+                      children: [
+                        for (var item in cartStore) Text(item),
+                      ],
+                    ),
                 ],
               ),
             ),

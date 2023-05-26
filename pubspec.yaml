@@ -82,6 +82,7 @@ flutter:
       - assets/img/
       - assets/logo/
       - assets/img/plant_bg.jpg
+      - assets/img/cartEmpty.png
       - assets/logo/Logo-PLANTPLAY.png
       - assets/icons/_flower.png
       - assets/icons/_green.png
