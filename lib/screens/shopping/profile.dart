@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
 
@@ -7,11 +8,13 @@ import '../../theme/style.dart';
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({Key? key}) : super(key: key);
 
+
   @override
   State<UserInfoPage> createState() => _UserInfoPageState();
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+
   Future<List<UserConstructor>>? userInfo;
   @override
   void initState() {
@@ -129,3 +132,4 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 }
+

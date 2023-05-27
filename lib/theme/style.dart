@@ -52,4 +52,5 @@ class ColorTheme {
   static const Color highlightColor = Color(0xFF1C9E73);
   static const Color introPageColor = Color(0xFF447055);
   static const Color purpleColor = Color(0xff312E49);
+  static const Color redButtonColor = Color(0xffC73E3E);
 }

@@ -13,6 +13,8 @@ class ProductImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(12),
@@ -20,15 +22,15 @@ class ProductImageSection extends StatelessWidget {
       ),
       child: Container(
         color: Color(0xFFD7E6D9),
-        height: 435,
+        height: screenHeight * 0.455,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 20, top: 20),
-              child: ProductHeader(product: product),
-            ),
-            const SizedBox(height: 25),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 10, right: 20, top: 20),
+            //   child: ProductHeader(product: product),
+            // ),
+            SizedBox(height: screenHeight * 0.005),
             Padding(
               padding: const EdgeInsets.only(left: 25),
               child: Text(
@@ -49,16 +51,16 @@ class ProductImageSection extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 274,
+              height: screenHeight * 0.35,
               child: Stack(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.topCenter,
                 children: [
                   Positioned(
-                    bottom: 0,
+                    // bottom: 0,
                     right: -20,
                     child: Image.asset(
                       '${product.img}',
-                      height: 280,
+                      height: screenHeight * 0.35,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -150,9 +152,9 @@ class ProductActions extends StatelessWidget {
               style: FontTheme.bodyText,
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 FavoriteButton(),
                 SizedBox(width: 20),
                 ShoppingBagButton(),
@@ -258,22 +260,24 @@ class MetricItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Column(
       children: [
         Icon(
           icon,
-          size: 30,
+          size: screenHeight * 0.038,
           color: ColorTheme.highlightColor,
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: screenHeight * 0.01),
         Text(
-          label,
+          "${screenHeight * 0.01}",
           style: FontTheme.bodyText.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: screenHeight * 0.01),
         Text(
           value,
           style: FontTheme.bodyText.copyWith(
@@ -294,8 +298,10 @@ class ProductInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -306,9 +312,9 @@ class ProductInfoSection extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 25),
+          SizedBox(height: screenHeight * 0.035),
           ProductMetrics(product: product),
-          const SizedBox(height: 15),
+          SizedBox(height: screenHeight * 0.02),
           Text(
             'About',
             style: FontTheme.bodyText.copyWith(
@@ -318,7 +324,7 @@ class ProductInfoSection extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           SizedBox(
-              height: 110,
+              height: screenHeight * 0.08,
               child: SingleChildScrollView(
                 child: Text(
                   '''The Monstera Adansonii grows best in a well-draining Aroid mix using bark, perlite, peat moss, and charcoal. Keep your plant in bright indirect light and humidity above 60%. When watering, make sure that the potting mix of your Adansonii remains slightly moistCrassula Ovata or Jade Plant, Paradise Tree or Silver Leaf Tree. This plant will filter the air and protect you from dust and help bring positive energy into the grower's home.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur doloribus, facere corporis, recusandae hic cupiditate itaque voluptas ad, eaque sed iure? Sequi rerum quibusdam perspiciatis nobis molestias incidunt explicabo dolorum?''',
