@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:flutter_launcher_icons/xml_templates.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 import '../../middleware/connect.dart';
 import '../../widgets/productWidgets.dart';
@@ -29,6 +31,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor: Color(0xFFD7E6D9),
         elevation: 0.0,
@@ -110,6 +113,7 @@ class _ProductPageState extends State<ProductPage> {
           )
         ],
       ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
