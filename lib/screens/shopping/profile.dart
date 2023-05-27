@@ -8,13 +8,11 @@ import '../../theme/style.dart';
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({Key? key}) : super(key: key);
 
-
   @override
   State<UserInfoPage> createState() => _UserInfoPageState();
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
-
   Future<List<UserConstructor>>? userInfo;
   @override
   void initState() {
@@ -83,7 +81,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 ),
               );
             }
-            ;
           }),
     );
   }
@@ -132,4 +129,3 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 }
-
