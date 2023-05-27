@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/authentication/login.dart';
+import 'package:flutter_application_1/widgets/navbar.dart';
 
 import '../../theme/style.dart';
 import '../shopping/store.dart';
@@ -173,7 +174,7 @@ class _SignupPageState extends State<SignupPage> {
               _controllerPassword,
             );
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const StorePage()),
+              MaterialPageRoute(builder: (context) => const NavBar()),
             );
           } else {
             setState(() {

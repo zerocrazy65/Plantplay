@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/theme/style.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../middleware/connect.dart';
 import '../../widgets/productWidgets.dart';

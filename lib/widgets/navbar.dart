@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/shopping/cart.dart';
 import 'package:flutter_application_1/screens/shopping/favorite.dart';
 import 'package:flutter_application_1/screens/shopping/store.dart';
-import 'package:flutter_application_1/screens/shopping/user.dart';
+import 'package:flutter_application_1/screens/shopping/profile.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 

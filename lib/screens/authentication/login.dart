@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/middleware/connect.dart';
 import 'package:flutter_application_1/screens/authentication/signup.dart';
-import 'package:flutter_application_1/screens/shopping/store.dart';
 import 'package:flutter_application_1/theme/style.dart';
+import 'package:flutter_application_1/widgets/navbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
             if (checkpass == "Authentication successful") {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => const StorePage(),
+                  builder: (_) => const NavBar(),
                 ),
               );
             } else {

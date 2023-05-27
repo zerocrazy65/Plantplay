@@ -11,6 +11,7 @@ String _localhost() {
 }
 
 String? currentEmail;
+bool isLogin = false;
 
 void signupReq(fname, lname, email, password) async {
   await http.post(Uri.parse("${_localhost()}/signup"),
@@ -50,16 +51,15 @@ Future<List<Item>> storeReq() async {
         id: value["p_id"],
         img: value["p_img"],
         type: value["p_type"],
-        name: value["p_name"], // Fix the value for the name field
-        price: value["p_price"], // Fix the value for the price field
+        name: value["p_name"],
+        price: value["p_price"],
       );
       items.add(item);
     });
     return items;
   } catch (e) {
-    // Handle the error (e.g., log the error, display an error message, etc.)
     print('Error during storeReq(): $e');
-    return []; // Return an empty list or null depending on your error handling strategy
+    return [];
   }
 }
 
@@ -82,10 +82,10 @@ class Item {
 Future<List<ProductConstructor>> productReq(id) async {
   final res = await http.get(Uri.parse("${_localhost()}/store/$id"));
   var resData = json.decode(res.body) as List<dynamic>;
-  
+
   print(resData);
 
-  List<ProductConstructor> products = resData.map((productData) {
+  List<ProductConstructor> product = resData.map((productData) {
     return ProductConstructor(
       id: productData['p_id'],
       img: productData['p_img'],
@@ -100,7 +100,7 @@ Future<List<ProductConstructor>> productReq(id) async {
     );
   }).toList();
 
-  return products;
+  return product;
 }
 
 class ProductConstructor {
@@ -126,5 +126,30 @@ class ProductConstructor {
     this.price,
     this.describe,
     this.rating,
+  });
+}
+
+Future<List<UserConstructor>> userReq(String currentEmail) async {
+  final res =
+      await http.get(Uri.parse("${_localhost()}/account/$currentEmail"));
+  var resData = json.decode(res.body);
+  // Creating a list to store input data
+  List<UserConstructor> users = resData.values.map<UserConstructor>((userData) {
+    return UserConstructor(
+      fname: userData["u_first"],
+      lname: userData["u_last"],
+    );
+  }).toList();
+
+  return users;
+}
+
+class UserConstructor {
+  final String? fname;
+  final String? lname;
+
+  UserConstructor({
+    this.fname,
+    this.lname,
   });
 }

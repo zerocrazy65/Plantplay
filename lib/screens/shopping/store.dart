@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/middleware/connect.dart';
-import 'package:flutter_application_1/screens/shopping/productPage.dart';
+import 'package:flutter_application_1/screens/shopping/product.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:flutter_application_1/widgets/storeWidgets.dart';
 
