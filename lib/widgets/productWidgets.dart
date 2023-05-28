@@ -58,6 +58,7 @@ class ProductImageSection extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 children: [
                   Positioned(
+                    bottom: 0,
                     right: -20,
                     child: Image.asset(
                       '${product.img}',

@@ -14,6 +14,5 @@ class CartProvider extends ChangeNotifier {
     cartStore.remove(item);
     notifyListeners();
   }
-
   // Add other cart manipulation methods as needed
 }

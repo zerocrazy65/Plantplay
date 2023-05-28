@@ -5,12 +5,15 @@ import 'package:flutter_application_1/theme/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:status_alert/status_alert.dart';
 import '../../middleware/connect.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../providers/cartProviders.dart';
+import '../../theme/style.dart';
+import '../../widgets/cartWidgets.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+  const CartPage({Key? key}) : super(key: key);
 
   @override
   State<CartPage> createState() => CartPageState();
@@ -18,20 +21,11 @@ class CartPage extends StatefulWidget {
 
 class CartPageState extends State<CartPage> {
   bool isDelete = false;
+
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    List<ProductConstructor> cartStore = cartProvider.cartStore;
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-    int totalPrice = 0;
-
-    int calTotal() {
-      for (var item in cartStore) {
-        totalPrice += item.price!;
-      }
-      return totalPrice;
-    }
+    final cartStore = cartProvider.cartStore;
 
     return Scaffold(
       appBar: AppBar(
@@ -45,11 +39,12 @@ class CartPageState extends State<CartPage> {
               });
             },
             icon: const ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  ColorTheme.greyColor,
-                  BlendMode.srcIn,
-                ),
-                child: Icon(Icons.delete)),
+              colorFilter: ColorFilter.mode(
+                ColorTheme.greyColor,
+                BlendMode.srcIn,
+              ),
+              child: Icon(Icons.delete),
+            ),
           ),
         ],
       ),
@@ -58,56 +53,9 @@ class CartPageState extends State<CartPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(
-                color: Colors.grey.withOpacity(0.3),
-                width: 1.3,
-              ))),
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "My Cart",
-                      style: FontTheme.headerText,
-                    ),
-                    SizedBox(
-                      width: screenWidth * 0.3,
-                    ),
-                    Text(
-                      "Total ${cartStore.length} Items",
-                      style: FontTheme.bodyText,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            CartHeader(cartItemCount: cartStore.length),
             if (cartStore.isEmpty)
-              Column(children: [
-                Column(
-                  children: [
-                    Image.asset('assets/img/cartEmpty.png'),
-                    Text(
-                      'Your cart is empty',
-                      style: FontTheme.bodyText,
-                    ),
-                    SizedBox(
-                      height: screenHeight * 0.01,
-                    ),
-                    Text(
-                      'Looks like you have not added anything to cart.',
-                      style: FontTheme.subBodyText,
-                    ),
-                    Text(
-                      'Go ahead & explore products.',
-                      style: FontTheme.subBodyText,
-                    ),
-                  ],
-                )
-              ])
+              EmptyCart()
             else
               Expanded(
                 child: SingleChildScrollView(
@@ -280,6 +228,9 @@ class CartPageState extends State<CartPage> {
                 )
               ],
             )
+
+              CartItems(cartStore: cartStore, isDelete: isDelete),
+
           ],
         ),
       ),
