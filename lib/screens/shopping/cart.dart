@@ -1,6 +1,9 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/theme/style.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:status_alert/status_alert.dart';
 import '../../middleware/connect.dart';
 import 'package:provider/provider.dart';
 
@@ -206,7 +209,61 @@ class CartPageState extends State<CartPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      print(cartStore);
+                      // print(cartStore);
+                      CoolAlert.show(
+                        context: context, 
+                        type: CoolAlertType.success,
+                        text: 'Payment successful!',
+                        autoCloseDuration: const Duration(seconds: 2),
+                        backgroundColor: Colors.white,
+                        confirmBtnText: "",
+                        confirmBtnColor: Colors.white
+                      );
+                      
+                      // StatusAlert.show(
+                      //   context,
+                      //   duration: const Duration(seconds: 2),
+                      //   title: "Payment successful!",
+                      //   titleOptions: StatusAlertTextConfiguration(
+                      //     style: GoogleFonts.quicksand(
+                      //       fontSize: 24,
+                      //       fontWeight: FontWeight.w500,
+                      //       color: const Color(0xFF312E49)
+                      //     )
+                      //   ),
+                      //   backgroundColor: Colors.white,
+                      //   configuration:WidgetConfiguration(
+                      //     widget: Column(
+                      //       children: [
+                      //         ClipRRect(
+                      //           borderRadius: BorderRadius.circular(120),
+                      //           child: Container(
+                      //             color: Color(0xFF16C992),
+                      //             child: const Padding(
+                      //               padding: EdgeInsets.all(20),
+                      //               child: Icon(
+                      //                 Icons.done,
+                      //                 color: Colors.white,
+                      //                 size: 65,
+                      //               ),
+                      //             )
+                      //           ),
+                      //         ),
+                      //         const SizedBox(
+                      //           height: 30,
+                      //         ),
+                      //         Text(
+                      //           "Payment successful!",
+                      //           style: GoogleFonts.quicksand(
+                      //             fontSize: 24,
+                      //             fontWeight: FontWeight.w500,
+                      //             color: const Color(0xFF312E49)
+                      //           ),
+                      //         )
+                      //       ],
+                      //     ),
+                      //   )
+                      // );
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
