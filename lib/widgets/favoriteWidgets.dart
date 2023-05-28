@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/providers/favoriteProviders.dart';
-import 'package:flutter_application_1/screens/shopping/product.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:provider/provider.dart';
+
+import '../screens/shopping/product.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _FavoritePageState extends State<FavoritePage> {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     bool mockActive = true;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

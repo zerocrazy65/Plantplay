@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/cartProviders.dart';
+import 'package:flutter_application_1/providers/favoriteProviders.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -9,14 +10,14 @@ import '../theme/style.dart';
 
 class ProductImageSection extends StatelessWidget {
   final ProductConstructor product;
+  final Function(bool) onFavoriteChanged;
 
-  const ProductImageSection({Key? key, required this.product})
+  const ProductImageSection(
+      {Key? key, required this.product, required this.onFavoriteChanged})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-
     return ClipRRect(
       borderRadius: const BorderRadius.only(
         bottomLeft: Radius.circular(12),
@@ -28,10 +29,6 @@ class ProductImageSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 10, right: 20, top: 20),
-            //   child: ProductHeader(product: product),
-            // ),
             SizedBox(height: screenHeight * 0.005),
             Padding(
               padding: const EdgeInsets.only(left: 25),
@@ -68,7 +65,8 @@ class ProductImageSection extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 25),
-                    child: ProductActions(product: product),
+                    child: ProductActions(
+                        product: product, onFavoriteChanged: onFavoriteChanged),
                   ),
                 ],
               ),
@@ -80,65 +78,12 @@ class ProductImageSection extends StatelessWidget {
   }
 }
 
-class ProductHeader extends StatelessWidget {
-  final ProductConstructor product;
-
-  const ProductHeader({Key? key, required this.product}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            size: 35,
-            color: ColorTheme.purpleColor,
-          ),
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: Container(
-            color: ColorTheme.mainGreenColor,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 3,
-                bottom: 3,
-                left: 8,
-                right: 8,
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    '${product.rating}',
-                    style: GoogleFonts.quicksand(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class ProductActions extends StatelessWidget {
   final ProductConstructor product;
-
-  const ProductActions({Key? key, required this.product}) : super(key: key);
+  final Function(bool) onFavoriteChanged;
+  const ProductActions(
+      {Key? key, required this.product, required this.onFavoriteChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +102,8 @@ class ProductActions extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const FavoriteButton(),
+                FavoriteButton(
+                    product: product, onFavoriteChanged: onFavoriteChanged),
                 const SizedBox(width: 20),
                 ShoppingBagButton(product: product),
               ],
@@ -170,8 +116,37 @@ class ProductActions extends StatelessWidget {
   }
 }
 
-class FavoriteButton extends StatelessWidget {
-  const FavoriteButton({super.key});
+class FavoriteButton extends StatefulWidget {
+  final ProductConstructor product;
+  final Function(bool) onFavoriteChanged; // Callback function
+  const FavoriteButton(
+      {Key? key, required this.product, required this.onFavoriteChanged})
+      : super(key: key);
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool favoriteIsActive = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkCartForProduct();
+  }
+
+  void checkCartForProduct() {
+    final favoritesProvider =
+        Provider.of<FavoritesProvider>(context, listen: false);
+    for (final item in favoritesProvider.favoriteStore) {
+      if (item.id == widget.product.id) {
+        setState(() {
+          favoriteIsActive = true;
+        });
+        break;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,12 +157,24 @@ class FavoriteButton extends StatelessWidget {
         height: 55,
         color: Colors.white,
         child: TextButton(
-          child: const Icon(
+          onPressed: favoriteIsActive
+              ? null // Disable button if shopIsActive is true
+              : () {
+                  final favoritesProvider =
+                      Provider.of<FavoritesProvider>(context, listen: false);
+                  favoritesProvider.addToFavorite(widget.product);
+                  setState(() {
+                    favoriteIsActive = true;
+                  });
+                  widget.onFavoriteChanged(
+                      true); // Notify the parent about the favorite status change
+                },
+          child: Icon(
             Icons.favorite,
             size: 36,
-            color: ColorTheme.mainGreenColor,
+            color:
+                favoriteIsActive ? Colors.red[400] : ColorTheme.mainGreenColor,
           ),
-          onPressed: () {},
         ),
       ),
     );
@@ -205,29 +192,55 @@ class _ShoppingBagButtonState extends State<ShoppingBagButton> {
   bool shopIsActive = false;
 
   @override
+  void initState() {
+    super.initState();
+    checkCartForProduct();
+  }
+
+  void checkCartForProduct() {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    for (final item in cartProvider.cartStore) {
+      if (item.id == widget.product.id) {
+        setState(() {
+          shopIsActive = true;
+        });
+        break;
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        width: 55,
-        height: 55,
-        color: ColorTheme.mainGreenColor,
-        child: TextButton(
-          child: Icon(
-            Icons.shopping_bag_outlined,
-            size: 36,
-            color: shopIsActive ? Colors.white54 : Colors.white,
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: Container(
+            width: 55,
+            height: 55,
+            color: ColorTheme.mainGreenColor,
+            child: TextButton(
+              onPressed: shopIsActive
+                  ? null // Disable button if shopIsActive is true
+                  : () {
+                      final cartProvider =
+                          Provider.of<CartProvider>(context, listen: false);
+                      cartProvider.addToCart(widget.product);
+                      setState(() {
+                        shopIsActive = true;
+                      });
+                    },
+              child: Icon(
+                Icons.shopping_bag_outlined,
+                size: 36,
+                color: shopIsActive
+                    ? ColorTheme.highlightColor
+                    : ColorTheme.whiteColor,
+              ),
+            ),
           ),
-          onPressed: () {
-            final cartProvider =
-                Provider.of<CartProvider>(context, listen: false);
-            cartProvider.addToCart(widget.product);
-            setState(() {
-              shopIsActive = !shopIsActive;
-            });
-          },
         ),
-      ),
+      ],
     );
   }
 }

@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/cartProviders.dart';
-import 'package:flutter_application_1/screens/authentication/login.dart';
+import 'package:flutter_application_1/providers/favoriteProviders.dart';
 
 import 'package:flutter_application_1/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  // Initialize Firebase App
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CartProvider>(
+          create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider<FavoritesProvider>(
+          create: (context) => FavoritesProvider(),
+        ),
+      ],
       child: const MyApplication(),
     ),
   );

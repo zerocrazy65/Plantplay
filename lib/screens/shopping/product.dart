@@ -8,8 +8,9 @@ import '../../widgets/productWidgets.dart';
 
 class ProductPage extends StatefulWidget {
   final int index;
-
-  const ProductPage({Key? key, required this.index}) : super(key: key);
+  final bool mockActive;
+  const ProductPage({Key? key, required this.index, required this.mockActive})
+      : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -18,11 +19,15 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   int? id;
   Future<List<ProductConstructor>>? productDetail;
+  bool favoriteIsActive = false;
 
   @override
   void initState() {
     super.initState();
     id = widget.index;
+    if (widget.mockActive == true) {
+      favoriteIsActive = widget.mockActive;
+    }
     productDetail = productReq(id.toString());
   }
 
@@ -85,7 +90,9 @@ class _ProductPageState extends State<ProductPage> {
                                       ),
                                       const SizedBox(width: 6),
                                       Text(
-                                        '${product.rating}',
+                                        favoriteIsActive
+                                            ? '${product.rating! + 1}'
+                                            : '${product.rating}',
                                         style: GoogleFonts.quicksand(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w500,
@@ -132,7 +139,9 @@ class _ProductPageState extends State<ProductPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ProductImageSection(product: product),
+                        ProductImageSection(
+                            product: product,
+                            onFavoriteChanged: onFavoriteChanged),
                         ProductInfoSection(product: product),
                       ],
                     );
@@ -144,5 +153,11 @@ class _ProductPageState extends State<ProductPage> {
         ],
       ),
     );
+  }
+
+  void onFavoriteChanged(bool isFavorite) {
+    setState(() {
+      favoriteIsActive = isFavorite;
+    });
   }
 }

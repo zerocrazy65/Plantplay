@@ -5,7 +5,6 @@ import 'package:flutter_application_1/screens/authentication/login.dart';
 import 'package:flutter_application_1/widgets/navbar.dart';
 
 import '../../theme/style.dart';
-import '../shopping/store.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

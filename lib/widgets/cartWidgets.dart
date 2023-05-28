@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:status_alert/status_alert.dart';
 
 import '../../providers/cartProviders.dart';
 import '../../theme/style.dart';
@@ -89,7 +91,7 @@ class CartItems extends StatelessWidget {
             for (var item in cartStore)
               Column(
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Container(
                     decoration: BoxDecoration(
                       color: ColorTheme.blurGreenColor,
@@ -105,7 +107,7 @@ class CartItems extends StatelessWidget {
                             fit: BoxFit.contain,
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -113,7 +115,7 @@ class CartItems extends StatelessWidget {
                               item.name.toString(),
                               style: FontTheme.bodyText,
                             ),
-                            SizedBox(height: 3),
+                            const SizedBox(height: 3),
                             Text(
                               '\$${item.price.toString()}',
                               style: FontTheme.detailText,
@@ -138,7 +140,7 @@ class CartItems extends StatelessWidget {
                               ),
                             ),
                           ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                       ],
                     ),
                   ),
@@ -179,16 +181,53 @@ class TotalSection extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {
-              print(cartStore);
-            },
+            onPressed: cartStore.isEmpty
+                ? null // Disable button if cartStore is empty
+                : () {
+                    StatusAlert.show(
+                      context,
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: Colors.white,
+                      configuration: WidgetConfiguration(
+                        widget: Column(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(120),
+                              child: Container(
+                                color: Color(0xFF16C992),
+                                child: const Padding(
+                                  padding: EdgeInsets.all(20),
+                                  child: Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                    size: 45,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Text(
+                              "Payment successful!",
+                              style: GoogleFonts.quicksand(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xFF312E49),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                 ColorTheme.mainGreenColor,
               ),
             ),
             child: Text(
-              'Buy now',
+              cartStore.isEmpty ? 'Your cart is empty' : 'Buy now',
               style: FontTheme.buttonText,
             ),
           ),
