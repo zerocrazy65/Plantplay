@@ -48,6 +48,7 @@ class ColorTheme {
   static const Color greyColor = Color.fromARGB(255, 152, 155, 158);
   static const Color whiteColor = Color(0xfff0f0f0);
   static const Color bgCartColor = Color(0xFFECECEC);
+  static const Color blurGreenColor = Color(0xFFD7E6D9);
   static const Color mainGreenColor = Color(0xFF47734D);
   static const Color highlightColor = Color(0xFF1C9E73);
   static const Color introPageColor = Color(0xFF447055);

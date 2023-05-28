@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/providers/cartProviders.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../middleware/connect.dart';
 import '../theme/style.dart';
@@ -21,7 +23,7 @@ class ProductImageSection extends StatelessWidget {
         bottomRight: Radius.circular(12),
       ),
       child: Container(
-        color: Color(0xFFD7E6D9),
+        color: ColorTheme.blurGreenColor,
         height: screenHeight * 0.455,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,10 +55,9 @@ class ProductImageSection extends StatelessWidget {
             SizedBox(
               height: screenHeight * 0.35,
               child: Stack(
-                alignment: Alignment.topCenter,
+                alignment: Alignment.bottomCenter,
                 children: [
                   Positioned(
-                    // bottom: 0,
                     right: -20,
                     child: Image.asset(
                       '${product.img}',
@@ -154,10 +155,10 @@ class ProductActions extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                FavoriteButton(),
-                SizedBox(width: 20),
-                ShoppingBagButton(),
+              children: [
+                const FavoriteButton(),
+                const SizedBox(width: 20),
+                ShoppingBagButton(product: product),
               ],
             ),
             const SizedBox(height: 20),
@@ -192,8 +193,15 @@ class FavoriteButton extends StatelessWidget {
   }
 }
 
-class ShoppingBagButton extends StatelessWidget {
-  const ShoppingBagButton({super.key});
+class ShoppingBagButton extends StatefulWidget {
+  final ProductConstructor product;
+  const ShoppingBagButton({Key? key, required this.product}) : super(key: key);
+  @override
+  _ShoppingBagButtonState createState() => _ShoppingBagButtonState();
+}
+
+class _ShoppingBagButtonState extends State<ShoppingBagButton> {
+  bool shopIsActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -204,12 +212,19 @@ class ShoppingBagButton extends StatelessWidget {
         height: 55,
         color: ColorTheme.mainGreenColor,
         child: TextButton(
-          child: const Icon(
+          child: Icon(
             Icons.shopping_bag_outlined,
             size: 36,
-            color: Colors.white,
+            color: shopIsActive ? Colors.white54 : Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            final cartProvider =
+                Provider.of<CartProvider>(context, listen: false);
+            cartProvider.addToCart(widget.product);
+            setState(() {
+              shopIsActive = !shopIsActive;
+            });
+          },
         ),
       ),
     );
@@ -271,7 +286,7 @@ class MetricItem extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.01),
         Text(
-          "${screenHeight * 0.01}",
+          label,
           style: FontTheme.bodyText.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,
@@ -324,7 +339,7 @@ class ProductInfoSection extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           SizedBox(
-              height: screenHeight * 0.08,
+              height: screenHeight * 0.12,
               child: SingleChildScrollView(
                 child: Text(
                   '''The Monstera Adansonii grows best in a well-draining Aroid mix using bark, perlite, peat moss, and charcoal. Keep your plant in bright indirect light and humidity above 60%. When watering, make sure that the potting mix of your Adansonii remains slightly moistCrassula Ovata or Jade Plant, Paradise Tree or Silver Leaf Tree. This plant will filter the air and protect you from dust and help bring positive energy into the grower's home.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur doloribus, facere corporis, recusandae hic cupiditate itaque voluptas ad, eaque sed iure? Sequi rerum quibusdam perspiciatis nobis molestias incidunt explicabo dolorum?''',
