@@ -153,3 +153,15 @@ class UserConstructor {
     this.lname,
   });
 }
+
+Future<String> recordSlip(email, p_id) async {
+  final res = await http.post(Uri.parse("${_localhost()}/record-slip"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'p_id': p_id,
+      }));
+  return res.body;
+}

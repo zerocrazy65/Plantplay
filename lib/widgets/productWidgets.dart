@@ -50,7 +50,7 @@ class ProductImageSection extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: screenHeight * 0.35,
+              height: screenHeight * 0.36,
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/cartProviders.dart';
 import 'package:flutter_application_1/providers/favoriteProviders.dart';
+import 'package:flutter_application_1/screens/authentication/login.dart';
+import 'package:flutter_application_1/screens/start/welcome.dart';
 
 import 'package:flutter_application_1/widgets/navbar.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +31,8 @@ class MyApplication extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: LoginPage(),
-      home: NavBar(),
+      home: WelcomePage(),
+      // home: NavBar(),
     );
   }
 }

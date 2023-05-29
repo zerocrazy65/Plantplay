@@ -77,6 +77,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                     _buildInputField(currentEmail!),
                     const SizedBox(height: 20),
                     _signOutButton(),
+                    const SizedBox(height: 30),
                   ],
                 ),
               );

@@ -157,14 +157,14 @@ class TotalSection extends StatelessWidget {
   final List<ProductConstructor> cartStore;
 
   const TotalSection({required this.cartStore});
-
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
     final totalPrice = calTotal(cartStore);
 
     return Column(
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -183,7 +183,11 @@ class TotalSection extends StatelessWidget {
           child: ElevatedButton(
             onPressed: cartStore.isEmpty
                 ? null // Disable button if cartStore is empty
-                : () {
+                : () async {
+                    for (var item in cartStore) {
+                      await recordSlip(currentEmail, item.id.toString());
+                    }
+                    cartProvider.clearCart();
                     StatusAlert.show(
                       context,
                       duration: const Duration(seconds: 2),
@@ -194,7 +198,7 @@ class TotalSection extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(120),
                               child: Container(
-                                color: Color(0xFF16C992),
+                                color: const Color(0xFF16C992),
                                 child: const Padding(
                                   padding: EdgeInsets.all(20),
                                   child: Icon(
@@ -232,7 +236,7 @@ class TotalSection extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 50),
+        const SizedBox(height: 30),
       ],
     );
   }
