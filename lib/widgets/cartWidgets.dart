@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:status_alert/status_alert.dart';
 
-import '../../providers/cartProviders.dart';
+import '../provider/cartProviders.dart';
 import '../../theme/style.dart';
 import '../middleware/connect.dart';
 

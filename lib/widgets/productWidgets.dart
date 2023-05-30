@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/providers/cartProviders.dart';
-import 'package:flutter_application_1/providers/favoriteProviders.dart';
+import 'package:flutter_application_1/provider/cartProviders.dart';
+import 'package:flutter_application_1/provider/favoriteProviders.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

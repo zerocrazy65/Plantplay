@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/providers/cartProviders.dart';
-import 'package:flutter_application_1/providers/favoriteProviders.dart';
-import 'package:flutter_application_1/screens/authentication/login.dart';
+import 'package:flutter_application_1/provider/cartProviders.dart';
+import 'package:flutter_application_1/provider/favoriteProviders.dart';
 import 'package:flutter_application_1/screens/start/welcome.dart';
 
-import 'package:flutter_application_1/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -32,7 +30,6 @@ class MyApplication extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: WelcomePage(),
-      // home: NavBar(),
     );
   }
 }

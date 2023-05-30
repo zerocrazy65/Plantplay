@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/theme/style.dart';
 import 'package:provider/provider.dart';
-import '../../providers/cartProviders.dart';
+import '../../provider/cartProviders.dart';
 import '../../widgets/cartWidgets.dart';
 
 class CartPage extends StatefulWidget {
