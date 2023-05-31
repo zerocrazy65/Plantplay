@@ -134,7 +134,7 @@ class StorePageState extends State<StorePage> {
                                 MaterialPageRoute(
                                   builder: (context) => ProductPage(
                                     index: item.id,
-                                    mockActive: false,
+                                    activityShow: false,
                                   ),
                                 ),
                               );

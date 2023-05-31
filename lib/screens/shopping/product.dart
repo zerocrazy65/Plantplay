@@ -8,8 +8,8 @@ import '../../widgets/productWidgets.dart';
 
 class ProductPage extends StatefulWidget {
   final int index;
-  final bool mockActive;
-  const ProductPage({Key? key, required this.index, required this.mockActive})
+  final bool activityShow;
+  const ProductPage({Key? key, required this.index, required this.activityShow})
       : super(key: key);
 
   @override
@@ -25,8 +25,8 @@ class _ProductPageState extends State<ProductPage> {
   void initState() {
     super.initState();
     id = widget.index;
-    if (widget.mockActive == true) {
-      favoriteIsActive = widget.mockActive;
+    if (widget.activityShow == true) {
+      favoriteIsActive = widget.activityShow;
     }
     productDetail = productReq(id.toString());
   }

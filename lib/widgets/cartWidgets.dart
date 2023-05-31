@@ -188,6 +188,7 @@ class TotalSection extends StatelessWidget {
                       await recordSlip(currentEmail, item.id.toString());
                     }
                     cartProvider.clearCart();
+                    // ignore: use_build_context_synchronously
                     StatusAlert.show(
                       context,
                       duration: const Duration(seconds: 2),

@@ -20,7 +20,7 @@ class _FavoritePageState extends State<FavoritePage> {
     final favoriteStore = favoriteProvider.favoriteStore;
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    bool mockActive = true;
+    bool activityShow = true;
 
     return Scaffold(
       appBar: AppBar(
@@ -112,7 +112,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                       MaterialPageRoute(
                                         builder: (context) => ProductPage(
                                           index: item.id!,
-                                          mockActive: mockActive,
+                                          activityShow: activityShow,
                                         ),
                                       ),
                                     );
